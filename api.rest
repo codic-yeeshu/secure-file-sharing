@@ -1,0 +1,69 @@
+# User Registration
+POST http://localhost:8000/api/users/register/
+Content-Type: application/json
+
+{
+    "email": "me2@gmail.com",
+    "password": "strongpassword123",
+    "user_type": "ops"
+}
+
+###
+
+# Verify email 
+GET http://localhost:8000/api/users/verify-email/5b443301-4f3c-453e-b7c6-23a6ceb7fe21
+
+###
+
+# User Login (Ops User)
+POST http://localhost:8000/api/users/login/
+Content-Type: application/json
+
+{
+    "email": "me2@gmail.com",
+    "password": "strongpassword123"
+}
+
+###
+
+# User Registration (Client User)
+POST http://localhost:8000/api/users/register/
+Content-Type: application/json
+
+{
+    "email": "clientuser@example.com",
+    "password": "clientpassword123",
+    "user_type": "client"
+}
+
+###
+
+# User Login (Client User)
+POST http://localhost:8000/api/users/login/
+Content-Type: application/json
+
+{
+    "email": "clientuser@example.com",
+    "password": "clientpassword123"
+}
+
+###
+
+# File Upload (Ops User) - Replace {TOKEN} with actual JWT token
+POST http://localhost:8000/api/files/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJlbWFpbCI6Im1lQGdtYWlsLmNvbSIsInVzZXJfdHlwZSI6Im9wcyJ9.kvQB11dMECP3aOCQwDf22XSFpNaaVW0Nvr6VmQRotyw
+Content-Type: multipart/form-data
+
+< test_file.docx
+
+###
+
+# List Files (Client User) - Replace {TOKEN} with actual JWT token
+GET http://localhost:8000/api/files/files/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJlbWFpbCI6ImNsaWVudHVzZXJAZXhhbXBsZS5jb20iLCJ1c2VyX3R5cGUiOiJjbGllbnQifQ.WuzLMW62q43X9VSio4Aq2HRKryZRgrNJ4opHNhGK1mg
+
+###
+
+# Download File (Client User) - Replace {TOKEN} and {FILE_ID}
+GET http://localhost:8000/api/files/files/{FILE_ID}/download/
+Authorization: Bearer {TOKEN}
